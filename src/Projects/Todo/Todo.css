@@ -1,6 +1,5 @@
 body {
   background-color: linear-gradient(100deg, #001214, #001f29);
-  font-family: "Winky Rough", sans-serif;
 }
 
 .winky-rough-regular {
@@ -19,8 +18,8 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  padding-top: 3%;
+  min-height: 90vh;
+  padding-top: 0;
   color: rgb(0, 0, 0);
   transition: 0.3s linear;
   overflow: hidden;
@@ -46,13 +45,17 @@ body {
 
 section h1 {
   color: #fff;
-  font-size: 4.8rem;
+  font-size: 3.5rem;
   text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .date-time {
+  color: #fff;
   font-size: 2.4rem;
   text-align: center;
+  margin-bottom: 0;
 }
 
 form {
@@ -124,57 +127,53 @@ span {
 }
 
 .todo-list {
-  min-width: 25%;
+  margin-top: 0;
+  min-width: 100%;
   list-style: none;
 }
 
-.todo-item {
-  margin: 2.4rem;
-  font-size: 20px;
-  color: #1c2833;
-  border-radius: 30px;
-  transition: background-color 200ms ease-in-out;
-  background-color: #f2f3f4;
-  min-width: 35rem;
-  max-width: 40rem;
-  padding: 1.6rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 0.3fr 0.3fr;
-  justify-content: start;
-  gap: 1.6rem;
-  overflow-wrap: anywhere;
-}
 
 li span {
   max-width: 20rem;
-  color: #1c2833;
+  color: #000000;
 }
-
 .check-btn,
 .delete-btn {
-  font-size: 1.5rem;
-  cursor: pointer;
-  width: 3rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
-  margin: 0 5px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.check-btn svg,
+.delete-btn svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
 }
 
 .check-btn {
-  color: #fff;
-  background-color: #2ecc71;
+  background-color: #1c2833;
+  color: #2ecc71;
 }
 
 .delete-btn {
-  color: #fff;
-  background-color: #e74c3c;
+  background-color: #1c2833;
+  color: #e74c3c;
 }
+
+.check-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
 
 .checkList {
   text-decoration: line-through;
@@ -185,26 +184,34 @@ li span {
 }
 
 .clear-btn {
-  background-color: #e74c3c;
+  background-color: #df5748;
   font-size: 1.6rem;
-  padding: 1rem 2.2rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 0.3rem;
 }
 
 .clear-btn:hover {
-  background-color: #8d1407;
+  background-color: #ff1900;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 25, 0, 0.3);
 }
 
 .todo-btn {
   padding: 10px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   border: none;
   outline: none;
-  border-top-right-radius: 17px;
-  border-bottom-right-radius: 17px;
+  border-radius: 0 10px 10px 0;
   background-color: #5dade2;
   color: var(--secondary-color);
-  width: 150px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.todo-btn:hover {
+  background-color: #5dade2;
+  transform: scale(1.01);
+  box-shadow: 0 3px 10px #5dade2;
 }
 
 .todo-input {
@@ -212,14 +219,34 @@ li span {
   font-size: 1.8rem;
   letter-spacing: 0.1rem;
   border: none;
+  margin-top: 0;
+  margin-bottom: 0;
   outline: none;
-  border-top-left-radius: 17px;
-  border-bottom-left-radius: 17px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   max-width: 500px;
   transition: background-color 200ms ease-in-out;
   width: 100%;
-  background-color: #f2f3f4;
+  background-color: #b1b1b1;
+  color: black;
+}
+
+.todo-item {
+  margin: 1.2rem;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
   color: var(--primary-color);
+  border-radius: 10px;
+  transition: background-color 200ms ease-in-out;
+  background-color: #f2f3f4;
+  min-width: 25rem;
+  max-width: 30rem;
+  padding: 1rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 0.3fr 0.3fr;
+  justify-content: start;
+  gap: 1.6rem;
+  overflow-wrap: anywhere;
 }
 
 .todo-input:hover {
@@ -230,4 +257,3 @@ li span {
   color: white;
   opacity: 0.7;
 }
-
