@@ -1,26 +1,17 @@
-import { FaCheck } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+
 import { useState } from "react";
 import "./Todo.css";
-
+import { TodoForm } from "./TodoForm";
+import { TodoList } from "./TodoList";
 export const Todo = () => {
   const [dateTime,setDateTime]=useState("");
-  const [inputValue, setinputValue] = useState("");
   const [task, setTask] = useState([]);
 
-  const handleInputChange = (val) => {
-    setinputValue(val);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  const handleFormSubmit = (inputValue) => {
     if (!inputValue) return;
-    if (task.some((item) => item.text === inputValue)) {
-      setinputValue("");
-      return;
-    }
+    if (task.some((item) => item.text === inputValue)) return;
     setTask((value) => [...value, { text: inputValue, isStuck: false }]);
-    setinputValue("");
+    
   };
 
   setInterval(() => {
@@ -48,38 +39,15 @@ export const Todo = () => {
         </div>
       </header>
 
-      <section className="form">
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <input
-              type="text"
-              className="todo-input"
-              autoComplete="off"
-              value={inputValue}
-              onChange={(e) => handleInputChange(e.target.value)}
-              placeholder="Enter your task"
-            />
-          </div>
-          <div>
-            <button type="submit" className="todo-btn">
-              Add task
-            </button>
-          </div>
-        </form>
-      </section>
+        <TodoForm onAddTodo={handleFormSubmit}/>
 
       <section className="myUnOrdList">
         <ul className="todo-list">
           {task.map((curTask, idx) => (
-            <li key={idx} className="todo-item">
-              <span style={{textDecoration : curTask.isStuck?'line-through':'none'}}>{curTask.text}</span>
-              <button className="check-btn" onClick={() => handleCheckBtn(idx)} >
-                <FaCheck/></button>
-              <button className="delete-btn" onClick={() => {handleDeleteTodo(curTask.text)}}>
-                <MdDelete />
-              </button>
-            </li>
-          ))}
+            <TodoList idx={idx} 
+            curTask={curTask}
+            handleCheckBtn={handleCheckBtn}
+            handleDeleteTodo={handleDeleteTodo}/>))}
         </ul>
       </section>
       {task.length>0 && (
