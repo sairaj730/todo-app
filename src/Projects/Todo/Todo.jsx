@@ -4,9 +4,9 @@ import { useState } from "react";
 import "./Todo.css";
 
 export const Todo = () => {
+  const [dateTime,setDateTime]=useState("");
   const [inputValue, setinputValue] = useState("");
   const [task, setTask] = useState([]);
-  const [dateTime,setDateTime]=useState("");
 
   const handleInputChange = (val) => {
     setinputValue(val);
@@ -14,26 +14,29 @@ export const Todo = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
     if (!inputValue) return;
-
-    if (task.includes(inputValue)) {
+    if (task.some((item) => item.text === inputValue)) {
       setinputValue("");
       return;
     }
-
-    setTask((value) => [...value, inputValue]);
+    setTask((value) => [...value, { text: inputValue, isStuck: false }]);
     setinputValue("");
   };
+
   setInterval(() => {
     const now=new Date();
     const LocatDateAndTime=now.toLocaleString();
     setDateTime(`${LocatDateAndTime}`)},1000);
-    
+  
   const handleDeleteTodo = (value) => {
-    const updatedTask = task.filter((curTask) => (curTask !== value));
+    const updatedTask = task.filter((curTask) => (curTask.text !== value));
     setTask(updatedTask);
   };
+  const handleCheckBtn = (index) => {
+    const updatedTasks = [...task];
+    updatedTasks[index].isStuck = !updatedTasks[index].isStuck;
+    setTask(updatedTasks);
+  };  
   const handleClearAll = () => {
     setTask([]);
   };
@@ -69,19 +72,21 @@ export const Todo = () => {
         <ul className="todo-list">
           {task.map((curTask, idx) => (
             <li key={idx} className="todo-item">
-              <span>{curTask}</span>
-              <button className="check-btn"><FaCheck/>
-              </button>
-              <button className="delete-btn" onClick={() => {handleDeleteTodo(curTask)}}>
+              <span style={{textDecoration : curTask.isStuck?'line-through':'none'}}>{curTask.text}</span>
+              <button className="check-btn" onClick={() => handleCheckBtn(idx)} >
+                <FaCheck/></button>
+              <button className="delete-btn" onClick={() => {handleDeleteTodo(curTask.text)}}>
                 <MdDelete />
               </button>
             </li>
           ))}
         </ul>
       </section>
-      <section>
+      {task.length>0 && (
+        <section>
         <button className="clear-btn" onClick={handleClearAll}>Clear all</button>
       </section>
+      )}
     </section>
 );
 };
