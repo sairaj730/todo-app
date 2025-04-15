@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import "./Todo.css";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
+import { getData, setData } from "./LocalStorageFolder";
 
 export const Todo = () => {
   const [dateTime, setDateTime] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => getData());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,12 +17,17 @@ export const Todo = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    setData(tasks);
+  }, [tasks]);
+  
   const handleFormSubmit = (inputValue) => {
     if (!inputValue.trim()) return;
     if (tasks.some((item) => item.text === inputValue)) return;
     setTasks((prev) => [...prev, { text: inputValue, isStuck: false }]);
   };
-  
+
   const handleDeleteTodo = (text) => {
     setTasks((prev) => prev.filter((task) => task.text !== text));
   };
@@ -49,7 +55,7 @@ export const Todo = () => {
         <ul className="todo-list">
           {tasks.map((curTask, idx) => (
             <TodoList
-              key={curTask.text}
+              key={`${curTask.text}-${idx}`}
               idx={idx}
               curTask={curTask}
               handleCheckBtn={handleCheckBtn}
