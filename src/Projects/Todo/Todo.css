@@ -1,6 +1,5 @@
 body {
   background: linear-gradient(100deg, #001214, #001f29);
-  /* font-family: 'Rubik', sans-serif; */
   font-family: 'Poppins', sans-serif;
 }
 
@@ -117,9 +116,7 @@ form {
   align-items: center;
   background-color: #e8e7e5e6;
   color: black;
-  padding: 0.2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0.2rem 1rem;
   margin: 1.2rem 1.2rem;
   border-radius: 10px;
   font-size: 2rem;
@@ -192,4 +189,105 @@ form {
   background-color: #ff1900;
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(255, 25, 0, 0.3);
+}
+
+/* ------------------------------
+   📱 Mobile Devices (up to 600px)
+------------------------------- */
+@media (max-width: 600px) {
+  .todo-container {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  section h1 {
+    font-size: 2rem;
+  }
+
+  .date-time {
+    font-size: 1.2rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .todo-input {
+    border-radius: 10px;
+    font-size: 1.2rem;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .todo-btn {
+    width: 100%;
+    border-radius: 10px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .todo-item {
+    font-size: 1.4rem;
+    padding: 0.6rem;
+    margin: 0.8rem 0;
+    max-width: 100%;
+  }
+
+  .check-btn,
+  .delete-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .check-btn svg,
+  .delete-btn svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .clear-btn {
+    font-size: 1.2rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+/* ------------------------------
+   📱📱 Tablets (601px–900px)
+------------------------------- */
+@media (max-width: 900px) {
+  section h1 {
+    font-size: 2.5rem;
+  }
+
+  .date-time {
+    font-size: 1.5rem;
+  }
+
+  .todo-input {
+    font-size: 1.4rem;
+    max-width: 100%;
+  }
+
+  .todo-btn {
+    font-size: 1.4rem;
+    height: 50px;
+  }
+
+  .todo-item {
+    font-size: 1.6rem;
+    padding: 0.8rem;
+    max-width: 90%;
+  }
+
+  .check-btn,
+  .delete-btn {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .clear-btn {
+    font-size: 1.4rem;
+    padding: 0.5rem 1.3rem;
+  }
 }
